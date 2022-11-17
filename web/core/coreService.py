@@ -192,6 +192,9 @@ def analyse_compkey(keyword, mydb, length=9472411):
     result = compkeys.find_one({"keyword":keyword})
     dict_res = {}
     if result is not None:
+        whole_count = result['whole_count']
+        result['whole_count']=whole_count+1
+        issuccess = compkeys.update_one({'keyword':keyword},{'$set':result})
         del result['_id']
         del result['keyword']
         del result['whole_average']
@@ -287,7 +290,7 @@ def update_compkey(mydb, keyword, compkey, score: float):
         result[compkey] = data
         whole_count = result['whole_count']
         whole_average = result['whole_average']
-        result['whole_count'] = whole_count + 1
+        # result['whole_count'] = whole_count + 1
         result['whole_average'] = (whole_average * (whole_count)+float(score))/(whole_count+1)
     
         issuccess = compkeys.update_one({'keyword': keyword}, {'$set': result})

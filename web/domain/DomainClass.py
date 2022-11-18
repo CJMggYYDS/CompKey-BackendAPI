@@ -31,3 +31,9 @@ class EchartResponse(BaseModel):
 class EchartDetailResponse(BaseModel):
     name: str
     value: int
+
+
+class AllCompKeyDetail(BaseModel):
+    key: int
+    word: str
+    detail: dict

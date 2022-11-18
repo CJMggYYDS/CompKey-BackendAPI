@@ -330,7 +330,7 @@ def get_compkeys(mydb):
     return dict_word
 
 
-def get_comkeys_details(mydb,keyword):
+def get_comkeys_details(mydb, keyword):
     # 返回keyword的全部竞争性关键词（排好序的，按计算过的竞争度）
     compkeys = mydb.compkeys
     result = compkeys.find_one({"keyword":keyword})
